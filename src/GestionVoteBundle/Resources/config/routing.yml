@@ -1,0 +1,64 @@
+gestion_vote_homepage:
+    path:     /
+    defaults: { _controller: GestionVoteBundle:Default:index }
+
+ajoutJurey:
+    path:     /ajoutJurey
+    defaults: { _controller: GestionVoteBundle:Default:ajoutJurey }
+
+ajoutCoatch:
+    path:     /ajoutCoatch
+    defaults: { _controller: GestionVoteBundle:Default:ajoutCoatch }
+
+
+post_like2:
+    path:     /listePub/{id}/like2
+    defaults: { _controller: GestionVoteBundle:Default:like2 }
+
+dislikeAction:
+    path:     /listePub/{id}/like3
+    defaults: { _controller: GestionVoteBundle:Default:dislike }
+
+
+
+
+
+meilleurslikeJurey:
+    path:     /adminVote1
+    defaults: { _controller: GestionVoteBundle:Default:listeMeilleurLike }
+mauvaiseslikeJurey:
+    path:     /adminVote2
+    defaults: { _controller: GestionVoteBundle:Default:listeMeilleurdisLike }
+meilleurslikeCoatch:
+    path:     /adminVote3
+    defaults: { _controller: GestionVoteBundle:Default:listeMeilleurdLikeCoatch}
+mauvaiseslikeCoatch:
+    path:     /adminVote4
+    defaults: { _controller: GestionVoteBundle:Default:listeMeilleurdisLikeCoatch }
+listeMeilleurLike1:
+    path:     /adminVote5
+    defaults: { _controller: GestionVoteBundle:Default:listeMeilleurLike1 }
+listeMeilleurdLikeCoatch1:
+    path:     /adminVote6
+    defaults: { _controller: GestionVoteBundle:Default:listeMeilleurdLikeCoatch1 }
+meilleurslikeJureyPdf:
+    path:     /adminVote7
+    defaults: { _controller: GestionVoteBundle:Default:PdflisteMeilleurLike }
+PdflisteMeilleurdisLike:
+    path:     /adminVote8
+    defaults: { _controller: GestionVoteBundle:Default:PdflisteMeilleurdisLike }
+PdflisteMeilleurdLikeCoatch:
+    path:     /adminVote9
+    defaults: { _controller: GestionVoteBundle:Default:PdflisteMeilleurdLikeCoatch }
+PdflisteMeilleurdisLikeCoatch:
+    path:     /adminVote10
+    defaults: { _controller: GestionVoteBundle:Default:PdflisteMeilleurdisLikeCoatch }
+PdflisteMeilleurLike1Jurey:
+    path:     /adminVote11
+    defaults: { _controller: GestionVoteBundle:Default:PdflisteMeilleurLike1 }
+PdflisteMeilleurdLikeCoatch1:
+    path:     /adminVote12
+    defaults: { _controller: GestionVoteBundle:Default:PdflisteMeilleurdLikeCoatch1 }
+
+
+

@@ -1,0 +1,27 @@
+backend_homepage:
+  path:     /admin
+  defaults: { _controller: EvenementBundle:Default:backendIndex }
+evenement_affiche:
+  path:     /admin/evenement/affiche
+  defaults: { _controller: EvenementBundle:Evenement:affiche }
+evenement_ajout:
+  path:     /admin/evenement/ajout
+  defaults: { _controller: EvenementBundle:Evenement:create }
+evenement_modifier:
+  path:     /admin/evenement/modifier/{id}
+  defaults: { _controller: EvenementBundle:Evenement:update }
+evenement_supprimer:
+  path:     /admin/evenement/supprimer/{id}
+  defaults: { _controller: EvenementBundle:Evenement:delete }
+evenement_update_status:
+  path:     /admin/evenement/update-status/{id}/{etat}
+  defaults: { _controller: EvenementBundle:Evenement:updateEventStatus }
+publicattion_list:
+  path:     /admin/publication/list
+  defaults: { _controller: EvenementBundle:Publication:affiche}
+publicattion_validate:
+  path:     /admin/publication/valider/{id}
+  defaults: { _controller: EvenementBundle:Publication:validate}
+publicattion_blocked:
+  path:     /admin/publication/blockee/{id}
+  defaults: { _controller: EvenementBundle:Publication:block}

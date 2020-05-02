@@ -1,0 +1,22 @@
+user_homepage:
+    path:     /
+    defaults: { _controller: UserBundle:Default:index }
+all:
+    path:     /api/users
+    defaults: { _controller: UserBundle:Default:All }
+add:
+    path:     /api/adduser/{nb}/{username}/{mail}/{nom}/{prenom}/{tel}/{date}/{role}/{password}
+    defaults: { _controller: UserBundle:Default:adduser }
+find_task:
+    path:     /api/find/{id}
+    defaults: { _controller: UserBundle:Default:find}
+find_mail:
+    path:     /api/findMail/{mail}/{password}
+    defaults: { _controller: UserBundle:Default:findMail}
+update_mail:
+    path:     /api/updateMail/{id}/{nom}/{prenom}/{tel}/{date}/{password}
+    defaults: { _controller: UserBundle:Default:updateMail}
+update_maill:
+    path:     /api/updateMail1/{id}
+    defaults: { _controller: UserBundle:Default:updateMail1}
+

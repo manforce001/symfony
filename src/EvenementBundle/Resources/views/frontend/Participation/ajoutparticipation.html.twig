@@ -1,0 +1,88 @@
+{% extends 'frontend/base.html.twig' %}
+
+{% block body %}
+    <div class="content container">
+        <div class="section-title-wrap">
+            <br>
+            <br>
+            <h1 style="color: #0c5460"><b>Formulaire de Participation : </b></h1>
+
+        </div>
+        <br>
+        <br>
+        {% if app.request.get('error') !=''  %}
+            <div class="alert alert-danger" role="alert">
+                {{ app.request.get('error') }}
+            </div>
+
+        {% endif %}
+        {% for error in form.vars.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error.message }}
+            </div>
+        {% endfor %}
+
+
+        {{ form_start(form) }}
+
+            <p class="br-section-text">Ajouter vos informations pour participer à votre événement préféré </p>
+        <br>
+
+            <div class="row">
+                <label class="col-sm-4 form-control-label">Nom:</label>
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                    {{ form_widget(form.nom,{'attr':{'class':'form-control'}} ) }}
+                </div>
+            </div><!-- row -->
+        <br>
+        <br>
+            <div class="row mg-t-20">
+                <label class="col-sm-4 form-control-label">Prénom:</label>
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                    {{ form_widget(form.prenom,{'attr':{'class':'form-control'}} ) }}
+
+                </div>
+            </div>
+        <br>
+        <br>
+            <div class="row mg-t-20">
+                <label class="col-sm-4 form-control-label">Email:</label>
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                    {{ form_widget(form.email,{'attr':{'class':'form-control'}} ) }}
+
+                </div>
+            </div>
+
+        <br>
+        <br>
+
+            <div class="row mg-t-20">
+                <label class="col-sm-4 form-control-label">CIN:</label>
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                    {{ form_widget(form.cin,{'attr':{'class':'form-control'}} ) }}
+
+                </div>
+            </div>
+        <br>
+        <br>
+            <div class="row mg-t-20">
+                <label class="col-sm-4 form-control-label">N° Téléphone:</label>
+
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                    {{ form_widget(form.numtel,{'attr':{'class':'form-control'}} ) }}
+
+                </div>
+            </div>
+        <br>
+        <br>
+            <div class="form-layout-footer mg-t-30" align="right">
+
+                <input type="submit" style="font-weight: 600;background: linear-gradient(to right, #FB4A64 0%, #F8875F 100%); margin: 0 -10px;" value="Valider"  class="btn btn-lg btn-color btn-button">
+
+                {#<a class="btn btn-lg btn-color btn-button" style="font-weight: 600;background: linear-gradient(to right, #FB4A64 0%, #F8875F 100%); margin: 0 -10px;"> Valider</a>#}
+            </div>
+        {{ form_end(form) }}
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base3.html.twig" %}
+{% block body %}
+    <body>
+<html>
+<head>
+    <title> publicite </title>
+</head>
+<body>
+<center>
+    <h1><font color="#dc143c"> Publicité</font>  </h1>
+    <br>
+    <table border="0">
+
+        {% for pub in pub %}
+            <tr>
+                <td> <img src="{{ asset('assets/front/images/' ~ pub.image)}}" width="400" height="270"> </td>
+            </tr>
+
+           <tr>
+                <td>{{ pub.candidat.nom }} </td>
+
+            </tr>
+              <tr>
+                  <td> {{ pub.description }} </td>
+              </tr>
+        {% endfor %}
+    </table>
+</center>
+</body>
+</html>
+{% endblock %}

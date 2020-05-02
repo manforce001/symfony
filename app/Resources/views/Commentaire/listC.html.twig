@@ -1,0 +1,29 @@
+<h1>Liste des Articles</h1>
+<table border="1">
+    <tr>
+        <td>Contenu</td>
+
+        <td>Date Commentaire</td>
+
+        <td>Article</td>
+
+    </tr>
+    {% for c in commentaire %}
+
+    <tr>
+
+        <td>
+            {{ c.contenu }}
+        </td>
+        <td>
+            {{ c.dateajout|date }}
+        </td>
+
+        <td>
+            {{ c.articles.titre }}
+        </td>
+
+        <td><a href="{{ path('det',{'id':a.id}) }}">Commentaires</a></td>
+    </tr>
+
+{% endfor %}

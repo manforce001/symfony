@@ -1,0 +1,63 @@
+{% extends 'frontend/base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <br><br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading" style="    position: relative;
+    z-index: 1;
+    margin-bottom: 70px;
+    text-align: center;">
+                                <h2 style="font-size: 48px;
+    color: #17a2b8;
+    text-transform: uppercase;
+    font-weight: 900;">  {{ evenement.title }}</h2>
+                                <h6> {{ evenement.datedebut | date('Y-m-d')}}  {{ evenement.datefin | date('Y-m-d')}}</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- About Thumbnail -->
+                        <div class="col-12 col-lg-6">
+                            <div class="about-thumbnail mb-100">
+                                     <img src="{{ asset('uploads/images/events/'~ evenement.imagePath) }}" width="560" height="400">
+                                                   </div>
+                        </div>
+                        <!-- About Content -->
+                        <div class="col-12 col-lg-6">
+                            <div class="about-content mb-100" style="color: black">
+
+                                <p>{{ evenement.description|raw }}</p>
+                                <img src="img/core-img/signature.png" alt="">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <br> <br>
+                    <div style="text-transform: uppercase;font-weight: 600;color: white">
+
+                        <a class="btn btn-lg btn-color btn-button"  href="{{ path('publication_affiche_by_event',{'idEvent': evenement.id}) }}" style="font-weight: 600;background: linear-gradient(to right, #FB4A64 0%, #F8875F 100%)"  > Publications</a>
+
+                        {% if app.user == null  %}
+                            <p>Si vous voulez participer à cet événement connecter à votre compte ou inscrivez-vous <a href="{{ path('fos_user_security_login') }}">ici</a>
+                            </p>
+                        {% else %}
+                            <a class="btn btn-lg btn-color btn-button"  href="{{ path('participation_add',{'eventId': evenement.id}) }}" style="font-weight: 600;background: linear-gradient(to right, #FB4A64 0%, #F8875F 100%); margin: 0 240px;"> Participer</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+                <br> <br>  <br> <br>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

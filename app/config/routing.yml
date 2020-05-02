@@ -1,0 +1,42 @@
+sponsoring:
+    resource: "@SponsoringBundle/Resources/config/routing.yml"
+    prefix:   /Projet
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+formation:
+    resource: "@formationBundle/Resources/config/routing.yml"
+    prefix:   /Projet
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+index_site:
+    path:     /
+    defaults: { _controller: AppBundle:Default:index }
+
+
+gestion_vote:
+    resource: "@GestionVoteBundle/Resources/config/routing.yml"
+    prefix:   /vote
+
+evenement:
+    resource: "@EvenementBundle/Resources/config/routing.yml"
+    prefix:   /
+
+frontend:
+    resource: "@EvenementBundle/Resources/config/routing_frontend.yml"
+    prefix:   /
+
+backend:
+    resource: "@EvenementBundle/Resources/config/routing_backend.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ancarebeca_fullcalendar:
+    resource: "@FullCalendarBundle/Resources/config/routing.yml"

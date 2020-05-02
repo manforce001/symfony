@@ -1,0 +1,119 @@
+{% extends 'backend/base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+   <div class="row center-block" >
+       <div class="col-md-11" style="margin: 0 65px;">
+           <center>
+               <h1 style="color: #0c5460"><b>Liste des Evenements</b></h1>
+                <a href="{{ path('evenement_ajout') }}" style="margin-left: 900px; background-color: #17a2b8;border: none" class="btn btn-primary">Ajouter</a>
+               {# total items count #}
+               <div class="count" style="color: black">
+                  <h5>Nombre d'evenements {{ pagination.getTotalItemCount }}</h5>
+               </div>
+              {% if app.request.get('error') !=''  %}
+                  <div class="alert alert-danger" role="alert">
+                      {{ app.request.get('error') }}
+                  </div>
+
+               {% endif %}
+               <table class="table table-bordered table-hover" >
+                   <tr>
+                       {# sorting of properties based on query components #}
+                       <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+                       <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}
+                       </th>
+                       <th{% if pagination.isSorted(['a.date', 'a.time']) %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Release', ['a.date', 'a.time']) }}
+                       </th>
+                       <th  {% if pagination.isSorted('a.image') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Image', 'a.image') }}
+                       </th>
+                        <th{% if pagination.isSorted('a.description') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Description', 'a.description') }}
+                       </th>
+                       <th style="width: 100px !important" {% if pagination.isSorted('a.dateDebut') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Date debut', 'a.dateDebut') }}
+                       </th>
+                       <th style="width: 100px !important" {% if pagination.isSorted('a.dateFin') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Date fin', 'a.dateFin') }}
+
+                       </th>
+
+                       <th  {% if pagination.isSorted('a.etat') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Etat', 'a.etat') }}
+                       </th>
+                        <th style="color: #007bff">Action</th>
+                       <th style="color: #007bff">Action</th>
+                   </tr>
+
+                   {# table body #}
+                   {% for evenement in pagination %}
+                       <tr {% if loop.index is odd %}class="color"{% endif %}>
+                           <td>{{ evenement.id }}</td>
+                           <td>{{ evenement.title }}</td>
+                           <td>{{ evenement.categories }}</td>
+                           <td><img style="max-height: 50px;max-width: 100px" src="{{ asset('uploads/images/events/'~ evenement.imagePath) }}"/></td>
+                           <td>{{ evenement.description |raw }}</td>
+                           <td>{{ evenement.datedebut | date ("d-M-y") }}</td>
+                           <td>{{ evenement.datefin | date ("d-M-y") }}</td>
+                             <td>
+                                 <select name="etat" class="nice-select" onchange="Update(this.options[this.selectedIndex].value,{{ evenement.id }});">
+                                    <option value="0" {%  if evenement.isPublic == 0 %} selected {% endif %}>Non Publiée</option>
+                                    <option value="1"{% if evenement.isPublic == 1 %} selected {% endif %} >Publiée</option>
+
+                                </select>
+                            </td>
+                            <td><a href=" {{path('evenement_modifier',{'id':evenement.id})   }}" style="color:#A9A9A9" ><i class="far fa-edit"></i></a></td>
+                           {# <td><a href="{{path('evenement_supprimer',{'id':evenement.id}) }}">Supprimer</a></td>#}
+                           <td><a href="{{path('evenement_supprimer',{'id':evenement.id})}}" style="color:#DC143C"><i class="fas fa-trash-alt"></i></a> </td>
+                       </tr>
+                   {% endfor %}
+               </table>
+               {# display navigation #}
+               <div class="navigation">
+                   {{ knp_pagination_render(pagination) }}
+               </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           </center>
+       </div>
+   </div>
+</div>
+{%  endblock %}
+    {%  block javascripts %}
+     <script>
+             function Update(etat ,id ) {
+
+                 var urll = '';
+
+
+                 urll = 'http://127.0.0.1:8000/admin/evenement/update-status/' + id + '/' + etat;
+
+
+                 $.ajax({
+                     url: urll,
+                     method: "GET",
+                     dataType: 'json',
+                     success: function (data, status) {
+
+                     }
+                 });
+             }
+
+    </script>
+
+{%  endblock %}

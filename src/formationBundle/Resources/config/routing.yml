@@ -1,0 +1,45 @@
+formation_homepage:
+    path:     /
+    defaults: { _controller: formationBundle:Default:index }
+
+formation_Affichage:
+    path:     /Affichage
+    defaults: { _controller: formationBundle:Formation:affiche }
+
+formation_Ajout:
+    path:     /Ajout
+    defaults: { _controller: formationBundle:Formation:create }
+
+formation_Modification:
+    path:     /modifier/{id}
+    defaults: { _controller: formationBundle:Formation:update }
+
+supprimer_formation:
+    path:     /supprimer/{id}
+    defaults: { _controller: formationBundle:Formation:delete }
+
+conseil_Affichage:
+    path:     /Afficheconseil
+    defaults: { _controller: formationBundle:Conseil:affiche }
+
+conseil_Ajout:
+    path:     /Ajoutconseil
+    defaults: { _controller: formationBundle:Conseil:create }
+
+rechercher_formation:
+    path:     /rechercherF
+    defaults: { _controller: formationBundle:Formation:recherche }
+
+pdf_formation:
+    path:     /pdf
+    defaults: { _controller: formationBundle:PDF:new }
+
+Part_Affichage:
+    path:     /Affichepart
+    defaults: { _controller: formationBundle:Formation:participerFor }
+index_formation:
+    path:     /accueil
+    defaults: { _controller: formationBundle:Formation:accueil }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

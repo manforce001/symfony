@@ -1,0 +1,29 @@
+{% extends "base3.html.twig" %}
+{% block body %}
+    <body>
+<html>
+<head>
+    <title>Modifier une publicité</title>
+
+</head>
+<body>
+<div class="container">
+<center><h1><font color="#dc143c">Modification Publicite</font></h1>
+    <br>
+    <fieldset style="width: 50%">
+
+        <form method="POST">
+            Description: <input type="text" name="description" value="{{ pub.description }}">
+            <br>
+            Type: <input type="text" name="type" value="{{ pub.type }}"></br>
+            Image: <input type="text" name="image" value="{{ pub.image }}"></br>
+            <input type="submit" value="modifier">
+        </form>
+    </fieldset>
+
+</center>
+</div>
+</body>
+
+</html>
+{% endblock %}

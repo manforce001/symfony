@@ -1,0 +1,205 @@
+{% extends 'backend/base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+   <div class="row center-block" >
+       <div class="col-md-11" style="margin: 0 65px;">
+           <center>
+               <h1 style="color: #0c5460"><b> Liste des Publications </b></h1>
+                {# total items count #}
+               <div class="count">
+                   <h5>Nombre des publications {{ pagination.getTotalItemCount }}</h5>
+               </div>
+               <table class="table table-bordered table-hover" >
+                   <tr>
+                       {# sorting of properties based on query components #}
+                       <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+                       <th{% if pagination.isSorted('a.titre') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Titre', 'a.titre') }}
+                       </th>
+
+                       <th  {% if pagination.isSorted('a.contenu') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Contenu', 'a.contenu') }}
+                       </th>
+                        <th{% if pagination.isSorted('a.description') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Description', 'a.description') }}
+                       </th>
+
+                       <th style="width: 100px !important" {% if pagination.isSorted('a.file') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Fichier', 'a.file') }}
+
+                       </th>
+                       <th style="width: 100px !important" {% if pagination.isSorted('a.categorie') %} class="sorted"{% endif %}>
+                           {{ knp_pagination_sortable(pagination, 'Categorie', 'a.categorie') }}
+                       </th>
+
+
+                        <th style="color: #007bff">Action</th>
+
+                   </tr>
+
+                   {# table body #}
+                   {% for publication in pagination %}
+                       <tr {% if loop.index is odd %}class="color"{% endif %}>
+                           <td>{{ publication.id }}</td>
+                           <td>{{ publication.titre }}</td>
+                           <td>{{ publication.contenu }}</td>
+                           <td>{{ publication.description |raw }}</td>
+                           {% if publication.contenu == 'image' %}
+                           <td>
+                               <img  width="177" height="100" src="{{ asset('uploads/images/publication/'~ publication.file) }}"></td>
+                           </td>
+                           {% else %}
+                           <td>  <video width="177" height="100" controls>
+                                   <source src="{{ asset('uploads/video/publication/'~ publication.file) }}" type="video/mp4">
+                                   Your browser does not support HTML5 video.
+                               </video></td>
+                           {% endif %}
+
+                           <td>{{ publication.categorie }}</td>
+
+                           <td>
+                               {% if publication.isBlocked %}
+                                   <i style="color: red" class="fa fa-times"></i>
+
+                               {% else %}
+
+                               {% if publication.isValid %}
+                     <i style="color: #00c054" class="fa fa-check"></i>
+                               {% else %}
+                  <a class="btn btn-primary" onclick="validate({{ publication.id }})" ><i class="fa fa-check"></i></a>
+                  <a class="btn btn-danger"  onclick="Bloquer({{ publication.id }})"  ><i class="fa fa-times"></i></a>
+
+                               {% endif %}
+
+                               {% endif %}
+                           </td>
+
+                   {% endfor %}
+                           {# <td><a href=" {{path('evenement_modifier',{'id':evenement.id})  }}">Modifier</a></td>
+                           #}{# <td><a href="{{path('evenement_supprimer',{'id':evenement.id}) }}">Supprimer</a></td>#}{#
+                           <td><a href="{{path('evenement_supprimer',{'id':evenement.id})}}">Supprimer</a> </td>
+                    #}   </tr>
+
+               </table>
+               {# display navigation #}
+               <div class="navigation">
+                   {{ knp_pagination_render(pagination) }}
+               </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           </center>
+       </div>
+   </div>
+</div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="confirmation-validate-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Acceptation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        est ce que vous_etes sur d'accepter votre publication ?
+
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  id="btn-validate" class="btn btn-success">Validate</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="confirmation-blocked-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Refuse</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p> Est ce que vous_etes sur de bloquer cet publication </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  id="btn-block" class="btn btn-success">Block</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{%  endblock %}
+    {%  block javascripts %}
+     <script>
+             function Update(etat ,id ) {
+
+                 var urll = '';
+
+
+                 urll = 'http://127.0.0.1:8000/admin/evenement/update-status/' + id + '/' + etat;
+
+
+                 $.ajax({
+                     url: urll,
+                     method: "GET",
+                     dataType: 'json',
+                     success: function (data, status) {
+
+                     }
+                 });
+             }
+             var blockedId = 0 ;
+             var validateId = 0 ;
+// 5àter id mà àndi ààlehà acces kn fi woset e validate w enà n7eb id fi handler mte3 btn confirme
+             function validate(id) {
+                 validateId = id;
+                 $("#confirmation-validate-modal").modal('show');
+
+
+             }
+
+
+             function Bloquer(id) {
+                 blockedId = id;
+                 $("#confirmation-blocked-modal").modal('show');
+
+             }
+
+             $("#btn-block").on("click", function(){
+                ///
+                 var route = "{{ path('publicattion_blocked', {'id': 'blockID'})|escape('js') }}";
+                 var res = route.replace("blockID", blockedId);
+                 document.location.href =res;
+
+             });
+//lorsque on click sur btn valider
+             $("#btn-validate").on("click", function(){
+                 var route = "{{ path('publicattion_validate', {'id': 'validateID'})|escape('js') }}";//twig
+                 var res = route.replace("validateID", validateId);//js donc mànàjmesh nermi twig fi js donc ààdina hàjà js
+                 document.location.href =res;//donc hezni lil res
+
+
+             });
+
+    </script>
+
+{%  endblock %}

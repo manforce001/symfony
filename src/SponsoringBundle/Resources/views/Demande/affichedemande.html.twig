@@ -1,0 +1,29 @@
+{% extends "base3.html.twig" %}{% block body %}
+    <body>
+    <center>
+        <h1> <font color="#dc143c"> Liste des demandes</font></h1>
+        <br>
+        <br>
+        <table border="1"><tr>
+                <th>Candidat</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th> Date demande</th>
+            </tr>
+            {% for dem in demandes %}
+                <tr>
+
+                    <td>{{ dem.candidat.nom }} </td>
+                    <td>{{ dem.description }}</td>
+                    <td>{{ dem.type }}</td>
+                    <td> {{ dem.date|date ("d-M-y") }}</td>
+
+                    <td><a href="{{ path('supprimer_dem',{'id':dem.id}) }}">supprimer   </a> </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </center>
+    </body>
+
+    </html>
+{% endblock %}

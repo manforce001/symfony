@@ -1,0 +1,44 @@
+{% extends "base3.html.twig" %}
+{% block body %}
+    <body>
+<html>
+<head>
+    <title>List des publicites</title>
+</head>
+<body>
+<center>
+    <h1><font color="#dc143c"> Liste des publicités</font>  </h1>
+    <br>
+    <table border="1">
+
+
+            <th>Candidat</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Image</th>
+
+            <th></th>
+        </tr>
+        {% for d in publicites %}
+            <tr>
+
+
+                <td>{{ d.candidat.nom }}</td>
+                <td>{{ d.description }}</td>
+                <td>{{ d.type }}</td>
+                <td><img src="{{ asset('assets/front/images/' ~ d.image)}}" width="250" height="200"></td>
+                <td> <a href="{{ path('ajouter_pub',{'id':d.id}) }}">ajouter    </a>
+
+                    <a href="{{ path('delete_pub',{'id':d.id}) }}">supprimer   </a>
+                    <a href="{{ path('modifier_pub',{'id':d.id}) }}">modifier   </a>
+                    <a href="{{ path('consulter_pub',{'id':d.id}) }}">consulter   </a>
+                </td>
+
+
+            </tr>
+        {% endfor %}
+    </table>
+</center>
+</body>
+</html>
+{% endblock %}

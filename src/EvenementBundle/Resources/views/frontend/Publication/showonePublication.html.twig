@@ -1,0 +1,114 @@
+{% extends 'frontend/base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <br><br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading" style="    position: relative;
+    z-index: 1;
+    margin-bottom: 70px;
+    text-align: center;">
+                            <h2 style="font-size: 48px;
+    color: #17a2b8;
+    text-transform: uppercase;
+    font-weight: 900;">  {{ publication.titre }}</h2>
+                            <h6> {{ publication.createdadd | date('Y-m-d')}}</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- About Thumbnail -->
+                    <div class="col-12 col-lg-6">
+                        <div class="about-thumbnail mb-100">
+                            {% if publication.contenu == 'image' %}
+                    <img src="{{ asset('uploads/images/publication/'~ publication.file) }}" width="560" height="400">
+                            {% else %}
+                                <video width="560" height="400" controls>
+                                    <source src="{{ asset('uploads/video/publication/'~ publication.file) }}" type="video/mp4">
+                                    Your browser does not support HTML5 video.
+                                </video>
+                            {% endif %}                        </div>
+                    </div>
+                    <!-- About Content -->
+                    <div class="col-12 col-lg-6">
+                        <div class="about-content mb-100" style="color: black">
+
+                            <p>{{ publication.description|raw }}</p>
+                            <img src="img/core-img/signature.png" alt="">
+                        </div>
+                    </div>
+
+
+                </div>
+                <br> <br>
+
+
+
+
+
+                <a href="#"class="btn btn-link js-like"  >
+                    <i class="fa fa-thumbs-up"></i>
+                    <span class="js-likes"> {{publication.nbLikejurey}} </span>
+                    <span class="js-label"> like </span>
+                </a>
+
+                <a href="#"class="btn btn-link js-like-1" id="ton_id">
+                    <i class="fa fa-thumbs-o-down"></i>
+                    <span class="js-likes" id="abc"> {{publication.nbLikejurey }} </span>
+                    <span class="js-label"> dislike</span>
+                </a>
+
+
+                <div style="text-transform: uppercase;font-weight: 600;color: white">
+                     <button class="btn btn-lg btn-color btn-button" style="font-weight: 600;background: linear-gradient(to right, #FB4A64 0%, #F8875F 100%)">Commenter</button>
+                </div>
+            </div>
+            <br> <br>  <br> <br>
+        </div>
+    </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        function onClickLink(event)
+        {
+            event.preventDefault();
+            const url = this.href;
+            const url2=this.href.ton_id;
+            const icone = this.querySelector('i');
+            const count = this.querySelector('span.js-likes');
+            const countt = this.querySelector('#abc');
+
+            var a = parseInt(count.innerHTML);
+
+
+
+            axios.get(url).then(function (response)
+            {	a=0;
+                count.textContent=a+1;
+                console.log(countt);
+                console.log(countt.textContent)
+
+
+
+
+            })
+
+        }
+        document.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click',onClickLink);
+
+
+        })
+
+    </script>
+
+{% endblock %}

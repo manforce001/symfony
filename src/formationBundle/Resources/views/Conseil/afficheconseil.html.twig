@@ -1,0 +1,27 @@
+{% extends "base4.html.twig" %}
+
+{% block body %}>
+
+            <center>
+                <h1>Liste des Conseils</h1>
+                <br>
+                <table border="1">
+
+                        <th>IdUser</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                    </tr>
+                    {% for conseil in conseils%}
+                        <tr>
+
+                            <th></th>
+                            <td>{{ conseil.description }}</td>
+                            <td><img src="{{ asset('assets/front/images/' ~ conseil.image)}}" width="250" height="200"></td>
+                            <td><a href="{{ path('conseil_Ajout',{'id':conseil.id}) }}">Ajouter</a></td>
+                            <th></th>
+
+                        </tr>
+                    {% endfor %}
+                </table>
+            </center>
+{% endblock %}

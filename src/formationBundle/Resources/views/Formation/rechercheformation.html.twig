@@ -1,0 +1,43 @@
+{% extends "base4.html.twig" %}
+
+{% block body %}
+    <center><h1><font color="#008b8b">Recherche Formation par description </font></h1></center>
+    <br>
+    <div class="container">
+        {{ form(form) }}
+
+        <table border="1">
+            <tr>
+                <td>Id</td>
+                <td>Description</td>
+                <td>DateDebut</td>
+                <td>DateFin</td>
+                <td>NbrPlace</td>
+            </tr>
+            {% for entity in formations %}
+                <tr>
+                    <td>
+                        {{ entity.id }}
+                    </td>
+                    <td>
+                        {{ entity.description }}
+                    </td>
+                    <td>
+                        {{ entity.datedebut|date }}
+                    </td>
+                    <td>
+                        {{ entity.datefin|date }}
+                    </td>
+                    <td>
+                        {{ entity.nbrplace }}
+                    </td>
+
+
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}
+
+

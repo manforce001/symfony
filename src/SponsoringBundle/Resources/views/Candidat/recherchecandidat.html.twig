@@ -1,0 +1,32 @@
+{% extends "base3.html.twig" %}
+
+{% block body %}
+<center>
+<h1><font color="#dc143c">Recherche candidat </font></h1>
+    <br>
+{{ form(form) }}
+
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Nom</td>
+
+        <td>Prenom</td>
+        <td></td>
+    </tr>
+    {% for candidat in candidats %}
+        <tr>
+
+            <td>
+                {{ candidat.nom }}
+            </td>
+            <td>
+                {{ candidat.prenom }}
+            </td>
+
+            <td> <a href="{{ path('ajouter_dem',{'id':candidat.id}) }}">ajouterdemande   </a></td>
+        </tr>
+    {% endfor %}
+</table>
+</center>
+{% endblock %}

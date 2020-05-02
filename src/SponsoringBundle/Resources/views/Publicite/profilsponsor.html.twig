@@ -1,0 +1,77 @@
+{% extends "base3.html.twig" %}
+
+{% block body %}
+
+    <a href="">Déconnexion</a>
+    <div class="col-md-3 product-men">
+        <div class="men-pro-item simpleCart_shelfItem">
+            <div class="men-thumb-item">
+                <img src="{{asset('assets/front/images/s1.jpg')}}" alt="" class="pro-image-front">
+                <img src="{{asset('assets/front/images/belle.jpg')}}" alt="" class="pro-image-back">
+                <div class="men-cart-pro">
+                    <div class="inner-men-cart-pro">
+                        <a href="single.html" class="link-product-add-cart">publicite du parfum Femme</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 product-men">
+        <div class="men-pro-item simpleCart_shelfItem">
+            <div class="men-thumb-item">
+                <img src="{{asset('assets/front/images/s2.jpg')}}" alt="logo" class="pro-image-front">
+                <img src="{{asset('assets/front/images/lovato.jpg')}}" alt="" class="pro-image-back">
+                <div class="men-cart-pro">
+                    <div class="inner-men-cart-pro">
+                        <a href="single.html" class="link-product-add-cart">publicite du vetement</a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 product-men">
+        <div class="men-pro-item simpleCart_shelfItem">
+            <div class="men-thumb-item">
+                <img src="{{asset('assets/front/images/vanessa.jpg')}}" alt="" class="pro-image-front">
+                <img src="{{asset('assets/front/images/hudgens.jpg')}}" alt="" class="pro-image-back">
+                <div class="men-cart-pro">
+                    <div class="inner-men-cart-pro">
+                        <a href="single.html" class="link-product-add-cart">publicite d'une robe star</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 product-men">
+        <div class="men-pro-item simpleCart_shelfItem">
+            <div class="men-thumb-item">
+                <img src="{{asset('assets/front/images/par.jpg')}}" alt="" class="pro-image-front">
+                <img src="{{asset('assets/front/images/s5.jpg')}}" alt="" class="pro-image-back">
+                <div class="men-cart-pro">
+                    <div class="inner-men-cart-pro">
+                        <a href="single.html" class="link-product-add-cart">publicite du parfum Homme</a>
+                    </div>
+                </div>
+
+{# buttons
+    //insert the whole bar
+    "{{ socialButtons() }}"
+    "{{ socialButtons({'facebook': { 'locale': 'fr_FR', 'send':true}} ) }}"
+    "{{  socialLink('facebook') }}"
+#}
+
+{% endblock %}

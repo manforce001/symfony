@@ -1,0 +1,76 @@
+
+{% extends "base4.html.twig" %}
+
+{% block body %}
+
+    <center>
+        <div class="environment-subheader">
+            <span class="subheader-transparent"></span>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+
+                    </div>
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% for msg in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ msg }}
+            </div>
+        {% endfor %}
+        <br><br><br>
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+
+            <div class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+
+        {% endfor %}
+        <div class="col-md-9">
+            <div class="environment-contact-form">
+
+
+
+
+                <center>  <div class="environment-fancy-title"> <center><h1><font color="#008b8b">Modifier Formation  </font></h1></center></div></center>
+                {{ form_start(form) }}
+                <label>Description : </label>
+
+                {{ form_widget(form.description,{'attr':{'type':'text','class':' border-top-0 border-left-0 border-right-0 rounded-0 pl-4','placeholder':'Titre...'}}) }}
+
+
+
+
+
+
+                {{ form_widget(form.description,{'attr':{'type':'text','class':' border-top-0 border-left-0 border-right-0 rounded-0 pl-4' ,'placeholder':'Description...'}}) }}
+
+                <br>
+                <label>Date Debut : </label><br>
+
+                {{ form_widget(form.dateDebut,{'attr':{'type':'text','class':' border-top-0 border-left-0 border-right-0 rounded-0 pl-4' ,'placeholder':'Description...'}}) }}
+
+
+                <label>Date fin : </label><br>
+
+                {{ form_widget(form.dateFin,{'attr':{'type':'text','class':' border-top-0 border-left-0 border-right-0 rounded-0 pl-4' ,'placeholder':'Description...'}}) }}
+
+                {{ form_end(form) }}
+
+                <br>
+
+
+            </div>
+        </div>
+
+    </center>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,36 @@
+sponsoring_homepage:
+    path:     /
+    defaults: { _controller: SponsoringBundle:Default:index }
+layout_pub:
+    path:     /layout
+    defaults: { _controller: SponsoringBundle:Publicite:layout }
+index_pub:
+    path:     /profilsponsor
+    defaults: { _controller: SponsoringBundle:Publicite:profilsponsor }
+sponsoring_affiche:
+    path:     /affichepub
+    defaults: { _controller: SponsoringBundle:Publicite:affiche }
+ajouter_pub:
+    path:      /ajouterpub
+    defaults: { _controller: SponsoringBundle:Publicite:ajouter }
+modifier_pub:
+    path:     /modifierpub/{id}
+    defaults: { _controller: SponsoringBundle:Publicite:modifier }
+delete_pub:
+    path:      /supprimerpub/{id}
+    defaults: { _controller: SponsoringBundle:Publicite:delete }
+affiche_dem:
+    path:     /affichedem
+    defaults: { _controller: SponsoringBundle:Demande:affichedemande }
+supprimer_dem:
+    path:     /supprimerdem/{id}
+    defaults: { _controller: SponsoringBundle:Demande:delete }
+recherche_candidat:
+    path:     /rechercher
+    defaults: { _controller: SponsoringBundle:Candidat:rechercheCandidat }
+ajouter_dem:
+    path:     /ajouterdem
+    defaults: { _controller: SponsoringBundle:Demande:ajoutdemande }
+consulter_pub:
+    path:     /consulter/{id}
+    defaults: { _controller: SponsoringBundle:Publicite:consulter }
