@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 namespace UserBundle\Controller;
 
@@ -36,6 +36,9 @@ class DefaultController extends Controller
         $formatted = $serializer->normalize($tasks);
         return new JsonResponse($formatted);
     }
+	/* api */
+	/* connexion*/
+	
     public function findMailAction($password, $mail)
     {
         $tasks = $this->getDoctrine()->getManager()
@@ -45,6 +48,7 @@ class DefaultController extends Controller
         $formatted = $serializer->normalize($tasks);
         return new JsonResponse($formatted);
     }
+	/* udate profil*/
     public function updateMailAction( $id,$nom,$prenom, $tel ,$date,$password)
     {
         $em=$this->getDoctrine()->getManager();
@@ -76,7 +80,7 @@ class DefaultController extends Controller
         return new JsonResponse($formatted);
     }
 
-
+	/* ajouter un utlisateur */
 
 
     public function adduserAction($nb,$username,$mail,$nom,$prenom,$tel,$date,$role,$password)
